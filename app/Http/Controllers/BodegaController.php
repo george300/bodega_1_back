@@ -106,4 +106,35 @@ class BodegaController extends Controller
     {
         //
     }
+
+    public function registro_codigo(request $request)
+    {
+        // return $request;
+        $dato = new CodigosLibros;
+        $dato->codigo = $request->codigo;
+        $dato->observacion = $request->observacion;
+        $dato->save();
+        return $request->codigo;
+    }
+    public function get_codigos()
+    {
+       
+        $codigo = DB::table('codigoslibros as cap')
+        ->select('cap.id','cap.codigo', 'cap.observacion')
+        ->limit(50)
+        ->orderBy('cap.created_at', 'DESC')
+        ->get();
+        return $codigo;
+    }
+    public function delete_codigo(Request $request)
+    {
+        $dato= DB::table('eliminados')->insert(
+            ['codigo' => $request->codigo, 'observacion' => $request->observacion]
+        );
+        
+        $res=DB::table('codigoslibros')
+        ->where('id',$request->id)->delete();
+        return 'eliminado';
+
+    }
 }

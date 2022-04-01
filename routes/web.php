@@ -826,3 +826,8 @@ Route::get('agenda_capacitacion/{id}','CapacitacionTemaController@getAgendaCapac
 Route::post('periodoActivoReg','PeriodoController@periodoActivoPorRegion');
 Route::post('editar_agenda_adm','CapacitacionController@edit_agenda_admin');
 
+
+//api de registro de codigos
+Route::post('add_codigo','BodegaController@registro_codigo');
+Route::get('get_codigo','BodegaController@get_codigos');
+Route::post('elimina_codigo','BodegaController@delete_codigo');
