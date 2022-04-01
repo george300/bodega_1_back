@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use OwenIt\Auditing\Contracts\Auditable;
 
-class CodigosLibros extends Model implements Auditable
+
+class CodigosLibros extends Model 
 {
-    use \OwenIt\Auditing\Auditable;
+    
     protected $table = "codigoslibros";
     protected $primaryKey = 'codigo';
     protected $fillable=[
