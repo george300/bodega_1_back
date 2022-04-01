@@ -109,12 +109,34 @@ class BodegaController extends Controller
 
     public function registro_codigo(request $request)
     {
+   
+        $validar = DB::select("SELECT * FROM codigoslibros
+        where codigo  = '$request->codigo'");
+
+       
+
+        $repetidos = [];
+        if(count($validar) >0){
+            $repetidos = [
+                "codigos" =>  $request->codigo,
+                "repetidas" => count($validar)
+            ];
+
+
+        }
+        
+
         // return $request;
         $dato = new CodigosLibros;
         $dato->codigo = $request->codigo;
         $dato->observacion = $request->observacion;
         $dato->save();
-        return $request->codigo;
+        $data = [];
+        $data = [
+            "codigosRepetidos" => $repetidos
+        ];
+        return $data;
+        //  return $request->codigo;
     }
     public function get_codigos()
     {
